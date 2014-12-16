@@ -1,0 +1,30 @@
+///////******   ASSETS    **************//////////
+
+
+.phone-visible {
+	display: block;
+
+	@include breakpoint($tablet-portrait) {
+		display: none !important;
+	}
+}
+
+.tablet-visible {
+	display: none !important;
+
+	@include breakpoint($tablet-portrait, $no-query: true) {
+		display: block !important;
+	}
+}
+
+.tablet-landscape-visible {
+	display: none !important;
+
+	@include breakpoint($tablet-landscape, $no-query: true) {
+		display: block !important;
+	}
+}
+
+
+
+

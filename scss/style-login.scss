@@ -1,0 +1,155 @@
+@import "fonts";
+@import "variables";
+@import "type";
+
+
+$red: 	$secondary-color;
+$green: #91c44e;
+
+html {
+	background-color: $super-light-gray;
+	background: radial-gradient($super-light-gray 70%, darken($super-light-gray,10%) 100%);
+}
+
+body {
+	background: transparent;
+}
+
+.login h1 a {
+	background-image: url('../img/logo.png');
+	background-image: none, url('../img/logo.svg');
+	background-repeat: no-repeat;
+	height: 70px;
+	background-size: auto;
+	background-position: 50%;
+	width: 100%;
+
+	img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+
+.wp-core-ui .button-primary {
+	background-color: $primary-color;
+	border-color: transparent;
+	color: white;
+	border-radius: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+
+
+
+	&:hover {
+		background-color: darken(white,40%);
+		border-color: darken(white,40%);
+		color: white;
+		box-shadow: none;
+	}
+
+	&:focus {
+		background-color: darken(white,40%);
+		border-color: darken(white,40%);
+		color: white;
+		box-shadow: none;
+		outline: none;
+		-webkit-appearance: none;
+	}
+}
+
+#login {
+	padding-top: 80px;
+}
+
+.login form {
+	background: darken(white,0%);
+	border: 1px solid $border-color;
+	box-shadow: none;
+	border-radius: 3px;
+}
+
+.login form .input, .login input[type="text"] {
+	background: #fff;
+	border: 1px solid #ccc;
+}
+
+.login #nav a, .login #backtoblog a {
+	color: darken(white,40%);
+	font-size: 10px;
+
+	&:hover {
+		color: $link-color !important;
+	}
+}
+
+.login #nav {
+	padding: 1em 0;
+	margin: 0;
+	font-size: .75em;
+	float: right;
+	text-align: center;
+	display: block;
+
+
+
+	a {
+		color: darken(white,40%);
+	}
+}
+
+.login #backtoblog {
+	padding: 1em 10px 1.5em 0;
+	margin: 0;
+	float: left;
+	font-size: .75em;
+	color: darken(white,40%);
+	text-align: center;
+
+	a {
+		color: darken(white,40%);
+	}
+}
+
+.login label {
+	font-weight: 400;
+}
+
+.login .forgetmenot {
+	label {
+		font-family: sans-serif;
+		letter-spacing: 0;
+		font-size: .75em;
+	}
+}
+
+div.updated, .login .message {
+	background-color: $green;
+	border-color: darken($green,30%);
+	color: white;
+}
+
+div.error, .login #login_error {
+	background-color: $red;
+	border-color: darken($red,30%);
+	color: white;
+	border-top: 1px solid darken($red,30%);
+
+	strong {
+		display: inline;
+	}
+
+	a {
+		color: lighten($red,20%);
+		display: inline-block;
+		padding: 0 5px;
+
+		&:hover {
+			color: lighten($red,40%);
+		}
+	}
+
+	&:first-child {
+		border-top: none;
+	}
+}

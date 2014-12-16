@@ -1,0 +1,27 @@
+$lato: 'Helvetica Neue', sans-serif;
+
+$bg-color: #fff;
+
+$primary-color: #ce1a1c;
+$secondary-color: #1764cd;
+
+$black: lighten(black,10%);
+
+$super-light-gray: #efefef;
+$light-gray: lighten(black,60%);
+
+$text-color: lighten(black,40%);
+$read-more-color: #999999;
+$border-color: $super-light-gray;
+$box-border-color: #dadada;
+$link-color: $primary-color;
+$heading-color: lighten(black,20%);
+
+
+$phone: max-width 639px;
+$tablet-portrait: 640px;
+$tablet-landscape: 960px;
+$desktop-small: 1025px;
+$desktop-normal: 1280px;
+$desktop-large: 1680px;
+
