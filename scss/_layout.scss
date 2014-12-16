@@ -20,24 +20,29 @@ $nogutters: (
   gutters: 0,
 );
 
-body.launch {
-	background-color: $bg-color;
-	padding-top: 80px;
-	overflow-x: hidden;
 
-	@include breakpoint($tablet-portrait, $no-query: true) {
-		padding-top: 90px;
-		width: 100% !important;
-		left: 0 !important;
-	}
-}
 
 body {
 	background-color: $bg-color;
-	padding-top: 66px;
 
-	@include breakpoint($tablet-portrait, $no-query: true) {
-		padding: 108px 0 0 0;
+	@include breakpoint($tablet-portrait) {
+
+	}
+
+	@include breakpoint($tablet-landscape) {
+
+	}
+
+	@include breakpoint($desktop-small, $no-query: true) {
+
+	}
+
+	@include breakpoint($desktop-normal) {
+
+	}
+
+	@include breakpoint($desktop-large) {
+
 	}
 }
 
@@ -46,335 +51,23 @@ body {
 	padding: 0 30px;
 
 	@include breakpoint($tablet-portrait) {
-		padding: 0 40px;
+
 	}
 
-	@include breakpoint($desktop-normal, $no-query: true) {
+	@include breakpoint($tablet-landscape) {
+
+	}
+
+	@include breakpoint($desktop-small, $no-query: true) {
 		padding: 0;
+	}
+
+	@include breakpoint($desktop-normal) {
+
 	}
 
 	@include breakpoint($desktop-large) {
-		@include container(95em);
-		padding: 0;
-	}
-}
 
-
-
-// -------------------------------------------------
-
-.header {
-	background-color: $super-light-gray;
-	padding: 10px 0;
-	width: 100%;
-	top: 0;
-	position: fixed;
-	z-index: 999;
-
-	@include breakpoint($tablet-portrait, $no-query: true) {
-		padding: 20px 0;
-	}
-
-	.startseite & {
-		box-shadow: 0 0 5px rgba(black,.4);
-	}
-}
-
-.logo {
-	float: left;
-	overflow: hidden;
-	width: 110px;
-
-	@include breakpoint($tablet-landscape, $no-query: true) {
-		width: 380px;
-	}
-
-	a {
-		display: block;
-		float: left;
-
-		&:hover {
-			border-bottom-color: transparent;
-		}
-	}
-
-	img {
-		max-width: 40px;
-		height: auto;
-		margin-right: 5px;
-		margin-bottom: 0;
-
-		@include breakpoint($tablet-portrait, $no-query: true) {
-			max-width: 60px;
-			height: auto;
-		}
-	}
-
-	h1 {
-		font-size: 1.4em;
-		padding-top: 18px;
-		float: right;
-		letter-spacing: 2pt;
-		display: none;
-		margin: 0;
-		padding-bottom: 0;
-		line-height: 1em;
-		font-variant: small-caps;
-
-		@include breakpoint($tablet-landscape, $no-query: true) {
-			display: inline;
-		}
-	}
-
-
-}
-
-.navigation {
-	float: right;
-	display: none;
-
-	@include breakpoint($tablet-portrait) {
-		display: block;
-	}
-
-	@include breakpoint($tablet-landscape, $no-query: true) {
-		display: block;
-	}
-
-	ul {
-
-		li {
-			float: left;
-			margin-right: 60px;
-			padding-top: 23px;
-
-			&:last-child {
-				margin-right: 0;
-			}
-
-			a {
-				color: $black;
-				text-transform: uppercase;
-				@include centroBold;
-				letter-spacing: 1pt;
-
-				&:hover {
-					text-decoration: none;
-					border-bottom: 2px solid $primary-color;
-				}
-			}
-
-			&.current-menu-item {
-				a {
-					text-decoration: none;
-					border-bottom: 2px solid $primary-color;
-				}
-			}
-		}
-	}
-}
-
-
-.single-arbeiten {
-	.navigation {
-		ul {
-			li {
-				&.menu-item-14 {
-					a {
-						text-decoration: none;
-						border-bottom: 2px solid $primary-color;
-					}
-				}
-			}
-		}
-	}
-}
-
-
-.mobile-navigation {
-	height: 40px;
-	color: $black;
-	margin-top: 0;
-	padding: 0;
-	margin-bottom: 10px;
-	line-height: 40px;
-	position: absolute;
-	right: 30px;
-	top: 12px;
-
-
-	.mobile-toggle {
-		color: white;
-		text-decoration: none;
-		width: 110x;
-		display: block;
-		padding: 0;
-		float: left;
-
-		a {
-			color: $black;
-			text-transform: uppercase;
-			@include centroBold;
-			letter-spacing: 1pt;
-			font-size: 1.5em;
-
-			&:hover {
-				text-decoration: none;
-			}
-		}
-	}
-
-	@include breakpoint($tablet-portrait, $no-query: true) {
-		display: none;
-	}
-}
-
-.mobile-nav-list {
-	float: left;
-	width: 100%;
-	height: auto;
-	max-height: 0;
-	overflow: hidden;
-	position: absolute;
-	width: 100%;
-	left: 0;
-	top: 65px;
-	transition: max-height .2s ease;
-
-	&.active {
-		max-height: 500px;
-	}
-
-	ul {
-		list-style: none;
-		background: darken($super-light-gray,5%);
-		margin: 0;
-
-		li {
-			float: none;
-			border-bottom: 1px solid $super-light-gray;
-
-			a {
-				@include centroBold;
-				text-transform: uppercase;
-				letter-spacing: 1pt;
-				color: $black;
-				padding: 0 30px;
-				line-height: 60px;
-				display: block;
-
-				&:hover {
-					background-color: darken($super-light-gray,15%);
-					text-decoration: none;
-					border-bottom-color: transparent;
-				}
-			}
-
-			&.current-menu-item {
-
-				a {
-					color: $primary-color;
-				}
-
-			}
-		}
-	}
-}
-
-
-.burger {
-  width:20px;
-  height:20px;
-  position:relative;
-  cursor:pointer;
-  float: left;
-  top: 8px;
-  margin-right: 5px;
-}
-
-.burg {
-  width:20px;
-  height:3px;
-  background: $primary-color;
-  position:absolute;
-  -o-transition:.3s ease-out;
-  -ms-transition:.3s ease-out;
-  -moz-transition:.3s ease-out;
-  -webkit-transition:.3s ease-out;
-  transition:.3s ease-out;
-}
-
-.a {
-  top:3px;
-}
-
-.b {
-  top: 10px;
-  -o-transition:.1s ease-out;
-  -ms-transition:.1s ease-out;
-  -moz-transition:.1s ease-out;
-  -webkit-transition:.1s ease-out;
-  transition:.1s ease-out;
-}
-
-.c {
-  top:17px;
-}
-
-
-.active .a {
-  top:10px;
-  transform:rotate(-135deg);
-  -webkit-transform:rotate(-135deg);
-}
-
-.active .b {
-  opacity:0;
-}
-
-.active .c {
-  top:10px;
-  transform:rotate(135deg);
-  -webkit-transform:rotate(135deg);
-}
-
-
-
-.main-footer {
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	height: 40px;
-	background-color: white;
-	padding: 10px 0;
-
-	p {
-		font-size: .875em;
-
-		a {
-			float: right;
-			color: $text-color;
-
-			&:hover {
-				color: $primary-color;
-			}
-		}
-	}
-
-	.startseite & {
-		background-color: transparent;
-
-		p {
-			color: darken(white,30%);
-
-			a {
-				color: darken(white,30%);
-
-				&:hover {
-					color: $primary-color;
-				}
-			}
-		}
 	}
 }
 
@@ -382,7 +75,4 @@ body {
 
 @import 'assets';
 @import 'startseite';
-@import 'arbeit';
-@import 'netzwerk';
-@import 'kontakt';
 @import 'plugins';
