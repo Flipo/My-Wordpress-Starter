@@ -30,6 +30,7 @@ if (function_exists('add_theme_support'))
     add_image_size('large', 700, '', true); // Large Thumbnail
     add_image_size('medium', 250, '', true); // Medium Thumbnail
     add_image_size('small', 120, '', true); // Small Thumbnail
+    add_image_size('facebook', 1800, 1125, true); // Facebook Thumbnail
     add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
     // Add Support for Custom Backgrounds - Uncomment below if you're going to use
@@ -92,7 +93,7 @@ function html5blank_header_scripts()
 {
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
 
-        wp_register_script('modernizr', get_template_directory_uri() . '/js/lib/modernizr-2.7.1.min.js', array(), '2.7.1'); // Modernizr
+        wp_register_script('modernizr', get_template_directory_uri() . '/js/lib/modernizr-custom.js', array(), '2.7.1'); // Modernizr
         wp_enqueue_script('modernizr'); // Enqueue it!
 
 		wp_register_script( 'plugins', get_template_directory_uri() . '/js/min/plugins-min.js', array('jquery'), '1.0.1', true );
@@ -247,7 +248,7 @@ function html5wp_excerpt($length_callback = '', $more_callback = '')
 function html5_blank_view_article($more)
 {
     global $post;
-    return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'html5blank') . '</a>';
+    return '...';
 }
 
 // Remove Admin bar
@@ -449,9 +450,77 @@ function cc_mime_types( $mimes ){
 
 add_filter( 'upload_mimes', 'cc_mime_types' );
 
+// Facebook Bildgröße für Open Graph
+add_filter('wpseo_opengraph_image_size', 'mysite_opengraph_image_size');
+
+function mysite_opengraph_image_size($val) {
+    return 'facebook';
+}
+
+// Suchwoerter hervorheben
+function wps_highlight_results($text){
+     if(is_search()){
+     $sr = get_query_var('s');
+     $keys = explode(" ",$sr);
+     $text = preg_replace('/('.implode('|', $keys) .')/iu', '<mark class="search-excerpt">'.$sr.'</mark>', $text);
+     }
+     return $text;
+}
+add_filter('the_content', 'wps_highlight_results');
+add_filter('the_excerpt', 'wps_highlight_results');
+add_filter('the_title', 'wps_highlight_results');
 
 // Clean comment-reply.min
 function clean_header(){
 	wp_deregister_script( 'comment-reply' );
 }
 add_action('init','clean_header');
+
+
+
+// Emojis entfernen
+function pw_remove_emojicons() 
+{
+    // Remove from comment feed and RSS
+    remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+    remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+
+    // Remove from emails
+    remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+
+    // Remove from head tag
+    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+
+    // Remove from print related styling
+    remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+    // Remove from admin area
+    remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+    remove_action( 'admin_print_styles', 'print_emoji_styles' );
+}
+
+add_action( 'init', 'pw_remove_emojicons' );
+
+// Contact Form 7 nur auf bestimmten Seiten
+add_action( 'wp_print_scripts', 'deregister_cf7_javascript', 100 );
+function deregister_cf7_javascript() {
+    if ( !is_page(array(7,424)) ) {
+        wp_deregister_script( 'contact-form-7' );
+    }
+}
+add_action( 'wp_print_styles', 'deregister_cf7_styles', 100 );
+function deregister_cf7_styles() {
+    if ( !is_page(array(7,424)) ) {
+        wp_deregister_style( 'contact-form-7' );
+    }
+}
+
+
+// Statify für Redakteure
+add_action('admin_init', 'add_theme_caps');
+function add_theme_caps() {
+   $editor = get_role('editor');
+   $editor->add_cap('edit_dashboard');
+}
+
+
